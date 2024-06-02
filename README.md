@@ -51,8 +51,8 @@ Using `Q` objects:
 from django.db.models import Q
 
 def books_with_q_objects(request):
-    # Example Q query: Books where the title contains 'Book' OR the author's name is 'Author One'
-    books = Book.objects.filter(Q(title__icontains='Book') | Q(author__name='Author One'))
+    # Example Q query: Books where the title contains 'Book' AND the author's name is 'Author One'
+    books = Book.objects.filter(Q(title__icontains='Book') & Q(author__name='Author One'))
     return render(request, 'library/books.html', {'books': books})
 ```
 
@@ -70,7 +70,7 @@ def books_without_q_objects(request):
     books_with_author = Book.objects.filter(author__in=authors)
     
     # Combine the querysets and remove duplicates
-    books = books_with_title | books_with_author
+    books = books_with_title & books_with_author
     books = books.distinct()
 
     return render(request, 'library/books.html', {'books': books})
