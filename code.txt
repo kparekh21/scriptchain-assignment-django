@@ -1,0 +1,46 @@
+
+## Create Django Project
+
+django-admin startproject scriptchain
+python manage.py startapp library
+
+## Migrations
+
+python manage.py makemigrations
+python manage.py migrate
+
+## Populate Dummy data
+
+from library.models import Author, Publisher, Book
+
+author1 = Author.objects.create(name='Author One')
+author2 = Author.objects.create(name='Author Two')
+
+publisher1 = Publisher.objects.create(name='Publisher One')
+publisher2 = Publisher.objects.create(name='Publisher Two')
+
+Book.objects.create(title='Book One', author=author1, publisher=publisher1)
+Book.objects.create(title='Book Two', author=author1, publisher=publisher2)
+Book.objects.create(title='Book Three', author=author2, publisher=publisher1)
+Book.objects.create(title='Book Four', author=author2, publisher=publisher2)
+
+### AWS
+
+sudo apt-get update
+
+sudo apt-get install python3-pip
+
+git clone https://github.com/kparekh21/scriptchain-assignment-django.git
+
+python3 -m venv sch
+
+source sch/bin/activate
+
+python3 -m pip install django django-debug-toolbar
+
+python3 manage.py runserver
+
+
+
+
+
